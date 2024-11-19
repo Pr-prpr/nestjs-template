@@ -1,6 +1,7 @@
-import {Controller, Get} from "@nestjs/common";
+import {Controller, Get, Query} from "@nestjs/common";
 import {TestService} from "./test.service";
 import {BizException} from "../config/exception/BizException";
+import {TestPipe} from "../config/pipie/test.pipe";
 
 @Controller("/test")
 export class TestController {
@@ -13,5 +14,9 @@ export class TestController {
     @Get("/error")
     async errorTest() {
         throw new BizException("主动抛出错误", 500);
+    }
+    @Get("/pipe")
+    async pipeTest(@Query("value", TestPipe) value: string) {
+        return value;
     }
 }
