@@ -1,7 +1,8 @@
-import {Controller, Get, Query} from "@nestjs/common";
+import {Controller, Get, Query, UseGuards} from "@nestjs/common";
 import {TestService} from "./test.service";
 import {BizException} from "../config/exception/BizException";
 import {TestPipe} from "../config/pipie/test.pipe";
+import {TestGuard} from "../config/guard/test.guard";
 
 @Controller("/test")
 export class TestController {
@@ -18,5 +19,10 @@ export class TestController {
     @Get("/pipe")
     async pipeTest(@Query("value", TestPipe) value: string) {
         return value;
+    }
+    @Get("/guard")
+    @UseGuards(TestGuard)
+    async guardTest() {
+        return "通过校验";
     }
 }
