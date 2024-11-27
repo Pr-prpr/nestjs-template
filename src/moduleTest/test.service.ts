@@ -1,11 +1,10 @@
-import {Injectable} from "@nestjs/common";
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class TestService {
-    constructor() {}
+  constructor() {}
 
-    testMethod() {
-        return "this is a test method";
-    }
-
+  testMethod() {
+    return 'this is a test method';
+  }
 }
